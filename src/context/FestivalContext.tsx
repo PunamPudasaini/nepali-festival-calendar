@@ -1,91 +1,141 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
-import { Festival, ViewMode } from "../type/festival";
+import React, { createContext, useContext, useReducer, useEffect } from "react";
 
-interface FestivalContextType {
-  festivals: Festival[];
-  searchQuery: string;
-  viewMode: ViewMode;
-  notes: Record<string, string>;
-  setSearchQuery: (query: string) => void;
-  setViewMode: (mode: ViewMode) => void;
-  updateNote: (festivalId: string, note: string) => void;
-  setFestivals: (festivals: Festival[]) => void;
+export interface Festival {
+  date: string;
+  name: string;
+  description: string;
+  isHoliday?: boolean;
+  notes?: string;
 }
 
-const FestivalContext = createContext<FestivalContextType | undefined>(
-  undefined
-);
+export interface FestivalState {
+  festivals: Festival[];
+  customFestivals: Festival[];
+  notes: Record<string, string>;
+  view: "calendar" | "list";
+  searchTerm: string;
+}
 
-const initialFestivals: Festival[] = [
-  {
-    id: "1",
-    name: "Dashain",
-    date: "2024-10-12",
-    description:
-      "The biggest Hindu festival in Nepal celebrating the victory of good over evil.",
-  },
-  {
-    id: "2",
-    name: "Tihar",
-    date: "2024-11-01",
-    description:
-      "Festival of lights celebrating the bond between brothers and sisters.",
-  },
-  {
-    id: "3",
-    name: "Holi",
-    date: "2024-03-25",
-    description: "The festival of colors welcoming spring season.",
-  },
-  {
-    id: "4",
-    name: "Maha Shivaratri",
-    date: "2024-03-08",
-    description: "A festival honoring Lord Shiva.",
-  },
-  {
-    id: "5",
-    name: "Buddha Jayanti",
-    date: "2024-05-23",
-    description: "Celebration of Buddha's birth, enlightenment, and death.",
-  },
-];
+type FestivalAction =
+  | { type: "ADD_FESTIVAL"; payload: Festival }
+  | {
+      type: "UPDATE_FESTIVAL";
+      payload: { oldDate: string; oldName: string; festival: Festival };
+    }
+  | { type: "DELETE_FESTIVAL"; payload: { date: string; name: string } }
+  | {
+      type: "UPDATE_NOTE";
+      payload: { date: string; name: string; note: string };
+    }
+  | { type: "SET_VIEW"; payload: "calendar" | "list" }
+  | { type: "SET_SEARCH"; payload: string };
+
+const initialState: FestivalState = {
+  festivals: [],
+  customFestivals: [],
+  notes: {},
+  view: "calendar",
+  searchTerm: "",
+};
+
+const FestivalContext = createContext<{
+  state: FestivalState;
+  dispatch: React.Dispatch<FestivalAction>;
+} | null>(null);
+
+const festivalReducer = (
+  state: FestivalState,
+  action: FestivalAction
+): FestivalState => {
+  switch (action.type) {
+    case "ADD_FESTIVAL":
+      return {
+        ...state,
+        customFestivals: [...state.customFestivals, action.payload],
+      };
+    case "UPDATE_FESTIVAL":
+      return {
+        ...state,
+        customFestivals: state.customFestivals.map((festival) =>
+          festival.date === action.payload.oldDate &&
+          festival.name === action.payload.oldName
+            ? action.payload.festival
+            : festival
+        ),
+      };
+    case "DELETE_FESTIVAL":
+      return {
+        ...state,
+        customFestivals: state.customFestivals.filter(
+          (festival) =>
+            !(
+              festival.date === action.payload.date &&
+              festival.name === action.payload.name
+            )
+        ),
+      };
+    case "UPDATE_NOTE":
+      return {
+        ...state,
+        notes: {
+          ...state.notes,
+          [`${action.payload.date}-${action.payload.name}`]:
+            action.payload.note,
+        },
+      };
+    case "SET_VIEW":
+      return {
+        ...state,
+        view: action.payload,
+      };
+    case "SET_SEARCH":
+      return {
+        ...state,
+        searchTerm: action.payload,
+      };
+    default:
+      return state;
+  }
+};
 
 export const FestivalProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [festivals, setFestivals] = useState<Festival[]>(initialFestivals);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [viewMode, setViewMode] = useState<ViewMode>("list");
-  const [notes, setNotes] = useState<Record<string, string>>(() => {
-    const savedNotes = localStorage.getItem("festivalNotes");
-    return savedNotes ? JSON.parse(savedNotes) : {};
-  });
+  const [state, dispatch] = useReducer(festivalReducer, initialState);
 
   useEffect(() => {
-    localStorage.setItem("festivalNotes", JSON.stringify(notes));
-  }, [notes]);
+    const savedData = localStorage.getItem("festivalData");
+    if (savedData) {
+      const { customFestivals, notes } = JSON.parse(savedData);
+      if (customFestivals) {
+        customFestivals.forEach((festival: Festival) => {
+          dispatch({ type: "ADD_FESTIVAL", payload: festival });
+        });
+      }
+      if (notes) {
+        Object.entries(notes).forEach(([key, note]) => {
+          const [date, name] = key.split("-");
+          dispatch({
+            type: "UPDATE_NOTE",
+            payload: { date, name, note: note as string },
+          });
+        });
+      }
+    }
+  }, []);
 
-  const updateNote = (festivalId: string, note: string) => {
-    setNotes((prev) => ({
-      ...prev,
-      [festivalId]: note,
-    }));
-  };
+  useEffect(() => {
+    localStorage.setItem(
+      "festivalData",
+      JSON.stringify({
+        customFestivals: state.customFestivals,
+        notes: state.notes,
+      })
+    );
+  }, [state.customFestivals, state.notes]);
 
   return (
-    <FestivalContext.Provider
-      value={{
-        festivals,
-        searchQuery,
-        viewMode,
-        notes,
-        setFestivals,
-        setSearchQuery,
-        setViewMode,
-        updateNote,
-      }}
-    >
+    <FestivalContext.Provider value={{ state, dispatch }}>
       {children}
     </FestivalContext.Provider>
   );

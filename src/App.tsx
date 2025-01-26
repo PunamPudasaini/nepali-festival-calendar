@@ -1,27 +1,25 @@
 import React from "react";
 import { FestivalProvider } from "./context/FestivalContext";
 import { useFestival } from "./context/FestivalContext";
-import { Calendar } from "lucide-react";
 import { SearchBar } from "./common/SearchBar";
 import { ViewToggle } from "./common/Toggle";
 import { NepaliCalendar } from "./components/Calendar";
 import { FestivalLists } from "./components/FestivalList";
 
 const FestivalCalendar: React.FC = () => {
-  const { viewMode } = useFestival();
+  const { state } = useFestival();
 
   return (
     <div className="app-container">
-      <header>
-        <div className="header-content">
-          <Calendar size={32} className="header-icon" />
-          <h1>Nepali Festival Calendar</h1>
-        </div>
+      <header className="header">
+        <h1>Nepali Festival Calendar</h1>
+      </header>
+      <div className="headers">
         <SearchBar />
         <ViewToggle />
-      </header>
+      </div>
       <main>
-        {viewMode === "list" ? <FestivalLists /> : <NepaliCalendar />}
+        {state.view === "calendar" ? <NepaliCalendar /> : <FestivalLists />}
       </main>
     </div>
   );

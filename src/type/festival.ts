@@ -1,4 +1,5 @@
 export interface Festival {
+  isHoliday?: any;
   id: string;
   name: string;
   date: string;

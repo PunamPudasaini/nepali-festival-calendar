@@ -1,53 +1,88 @@
-.list-view {
+.festival-list {
   display: grid;
-  gap: 20px;
-  padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
+  gap: 1rem;
+}
+
+.add-festival-button {
+  margin-bottom: 1rem;
 }
 
 .festival-card {
-  background: white;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: var(--shadow-md);
-  transition: transform 0.3s ease;
+  background-color: var(--white);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.festival-card:hover {
-  transform: translateY(-2px);
+.festival-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
 }
 
 .festival-card h3 {
-  margin: 0 0 8px;
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.festival-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 0.25rem;
   color: var(--text-color);
-  font-size: 1.5rem;
+  transition: all 0.2s;
+}
+
+.btn-icon:hover {
+  background-color: var(--background-color);
+}
+
+.btn-icon.delete {
+  color: #dc2626;
+}
+
+.btn-icon.delete:hover {
+  background-color: #fee2e2;
+}
+
+.holiday-badge {
+  display: inline-block;
+  background-color: #059669;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
 }
 
 .festival-card .date {
   color: var(--primary-color);
   font-weight: 500;
-  margin-bottom: 12px;
+  margin-bottom: 0.5rem;
 }
 
 .festival-card .description {
-  color: var(--gray-500);
-  margin-bottom: 16px;
-  line-height: 1.6;
+  color: #4b5563;
+  margin-bottom: 1rem;
 }
 
-.notes-input {
+.festival-card .notes {
+  margin-top: 1rem;
+}
+
+.festival-card .notes textarea {
   width: 100%;
-  min-height: 80px;
-  padding: 12px;
-  border: 2px solid var(--border-color);
-  border-radius: 8px;
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.25rem;
   resize: vertical;
-  transition: all 0.3s ease;
-}
-
-.notes-input:focus {
-  outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  min-height: 60px;
 }

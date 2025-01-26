@@ -1,0 +1,53 @@
+.list-view {
+  display: grid;
+  gap: 20px;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.festival-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.3s ease;
+}
+
+.festival-card:hover {
+  transform: translateY(-2px);
+}
+
+.festival-card h3 {
+  margin: 0 0 8px;
+  color: var(--text-color);
+  font-size: 1.5rem;
+}
+
+.festival-card .date {
+  color: var(--primary-color);
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.festival-card .description {
+  color: var(--gray-500);
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.notes-input {
+  width: 100%;
+  min-height: 80px;
+  padding: 12px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  resize: vertical;
+  transition: all 0.3s ease;
+}
+
+.notes-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}

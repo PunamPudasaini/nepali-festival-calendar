@@ -1,0 +1,31 @@
+.view-toggle {
+  display: flex;
+  gap: 10px;
+  margin: 20px auto;
+  justify-content: center;
+}
+
+.toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.toggle-btn:hover {
+  background: var(--background-color);
+}
+
+.toggle-btn.active {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.toggle-btn.active svg {
+  stroke: white;
+}

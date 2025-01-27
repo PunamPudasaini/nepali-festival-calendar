@@ -1,10 +1,14 @@
 :root {
-  --primary-color: #2563eb;
-  --secondary-color: #1e40af;
+  --primary-color: #2563eb; 
+  --secondary-color: #1e40af; 
   --text-color: #1f2937;
-  --border-color: #e5e7eb;
-  --background-color: #f3f4f6;
-  --white: #ffffff;
+  --border-color: #e5e7eb; 
+  --background-color: #f3f4f6; 
+  --white: #ffffff; 
+  --focus-color: #6366f1; 
+  --hover-text-color: #4b5563; 
+  --muted-text-color: #9ca3af; 
+  --destructive-color: red
 }
 
 * {
@@ -28,7 +32,7 @@ body {
 
 .header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin: 2rem 0;
 }
 
 .header h1 {
@@ -41,9 +45,73 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
   gap: 1rem;
   flex-wrap: wrap;
+  margin: 1rem 0;
+
+}
+
+.btn-container {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+  justify-items: center;
+  margin: 1rem;
+  flex-wrap: wrap; 
+}
+
+.festival-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: var(--primary-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--white);
+}
+
+
+.date-filter-container {
+  position: relative;
+}
+
+.date-input {
+  padding: 0.75rem 32px 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  outline: none;
+  transition: box-shadow 0.3s;
+  display: flex;
+  gap: 1rem;
+}
+
+.date-input:focus {
+  box-shadow: 0 0 0 2px var(--focus-color);
+  
+}
+
+.clear-date-button {
+  position: absolute;
+  right: 16px;
+  top: 52%;
+  transform: translateY(-50%);
+  color: var(--destructive-color);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
 }
 
 /* Responsive Design */
@@ -52,16 +120,9 @@ body {
     padding: 1rem;
   }
 
-  .headers {
-    flex-direction: column;
-  }
-
-  .search-bar {
-    width: 100%;
-  }
-
-  .view-toggle {
-    width: 100%;
-    justify-content: center;
-  }
+  .btn-container {
+  display: flex;
+  justify-content: start;
+  flex-wrap: wrap; 
+}
 }

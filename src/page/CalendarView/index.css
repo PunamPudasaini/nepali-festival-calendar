@@ -1,0 +1,236 @@
+.calendar-container {
+  background: var(--white);
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-navigation {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 1.5rem;
+}
+
+.year-month-selector {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.year-select,
+.month-select {
+  padding: 0.5rem 2rem 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.375rem;
+  background-color: var(--white);
+  font-size: 1rem;
+  color: var(--text-color);
+  cursor: pointer;
+  appearance: none;
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+}
+
+.year-select:hover,
+.month-select:hover {
+  border-color: #d1d5db;
+}
+
+.year-select:focus,
+.month-select:focus {
+  outline: 2px solid var(--focus-color);
+  outline-offset: 2px;
+}
+
+.calendar-grid {
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.calendar-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background-color: var(--background-color);
+  border-bottom: 1px solid var(--border-color);
+   overflow-y: auto;
+}
+
+.calendar-day-header {
+  padding: 0.75rem;
+  text-align: center;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  overflow-y: auto;
+}
+
+.calendar-cell {
+  aspect-ratio: 1;
+  border: 1px solid var(--border-color);
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  min-height: 120px;
+}
+
+.calendar-cell:hover {
+  background-color: var(--background-color);
+}
+
+.calendar-cell.empty {
+  background-color: var(--background-color);
+  cursor: default;
+}
+
+.calendar-cell.selected {
+  background-color: #e0e7ff;
+}
+
+.day-header {
+  display: flex;
+  flex-direction: column; 
+  justify-content: space-between;
+  align-items: center; 
+  margin-bottom: 0.5rem;
+  height: 100%;
+  padding: 1rem 0;
+}
+
+.day-number {
+  font-size: 0.875rem;
+  color: var(--text-color);
+  margin-bottom: 0.25rem; 
+}
+
+.add-festival-button {
+  opacity: 0;
+  transition: opacity 0.2s;
+  padding: 0.25rem;
+  border-radius: 0;
+  color: var(--text-color);
+  border: none;
+  cursor: pointer;
+}
+
+
+.calendar-cell:hover .add-festival-button {
+  opacity: 1;
+}
+
+.add-festival-button:hover {
+  background-color: var(--border-color);
+  color: #1f2937;
+}
+
+.festival-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  overflow-y: auto;
+  max-height: calc(100% - 2rem);
+}
+
+.calendar-festival {
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.calendar-festival:hover {
+  background-color: var(--secondary-color);
+}
+
+.calendar-modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 50;
+}
+
+.modal-content {
+  background: var(--white);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  max-width: 500px;
+}
+
+.modal-content h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.375rem;
+}
+
+.form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  justify-content: end;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-color);
+}
+
+.btn-secondary {
+  background-color: var(--border-color);
+  color: var(--text-color);
+}
+
+.btn-secondary:hover {
+  background-color: #d1d5db;
+}

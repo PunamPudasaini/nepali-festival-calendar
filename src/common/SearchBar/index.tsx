@@ -1,9 +1,9 @@
 import React from "react";
 import "./index.css";
-import { useFestival } from "../../context/FestivalContext";
+import { useFestivalContext } from "../../context/FestivalContext";
 
 export const SearchBar: React.FC = () => {
-  const { state, dispatch } = useFestival();
+  const { state, dispatch } = useFestivalContext();
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({ type: "SET_SEARCH", payload: e.target.value });
@@ -15,8 +15,8 @@ export const SearchBar: React.FC = () => {
         <input
           type="text"
           placeholder="Search festivals..."
-          value={state.searchTerm}
-          onChange={handleSearch}
+          value={state.searchQuery}
+          onChange={(e) => handleSearch(e)}
         />
       </div>
     </>

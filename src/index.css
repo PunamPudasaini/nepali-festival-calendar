@@ -1,128 +1,101 @@
-:root {
-  --primary-color: #2563eb; 
-  --secondary-color: #1e40af; 
-  --text-color: #1f2937;
-  --border-color: #e5e7eb; 
-  --background-color: #f3f4f6; 
-  --white: #ffffff; 
-  --focus-color: #6366f1; 
-  --hover-text-color: #4b5563; 
-  --muted-text-color: #9ca3af; 
-  --destructive-color: red
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background-color: var(--background-color);
-  color: var(--text-color);
-}
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
 
-.app-container {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 16px;
-}
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
 
-.header {
-  text-align: center;
-  margin: 2rem 0;
-}
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
 
-.header h1 {
-  font-size: 2rem;
-  color: var(--text-color);
-  margin-bottom: 1rem;
-}
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
 
-.headers {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin: 1rem 0;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
 
-}
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
 
-.btn-container {
-  display: flex;
-  justify-content: end;
-  gap: 10px;
-  justify-items: center;
-  margin: 1rem;
-  flex-wrap: wrap; 
-}
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
 
-.festival-button {
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 0.5rem;
-  background-color: var(--primary-color);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--white);
-}
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
 
+    --radius: 0.5rem;
 
-.date-filter-container {
-  position: relative;
-}
+    --sidebar-background: 0 0% 98%;
 
-.date-input {
-  padding: 0.75rem 32px 0.75rem;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  outline: none;
-  transition: box-shadow 0.3s;
-  display: flex;
-  gap: 1rem;
-}
+    --sidebar-foreground: 240 5.3% 26.1%;
 
-.date-input:focus {
-  box-shadow: 0 0 0 2px var(--focus-color);
-  
-}
+    --sidebar-primary: 240 5.9% 10%;
 
-.clear-date-button {
-  position: absolute;
-  right: 16px;
-  top: 52%;
-  transform: translateY(-50%);
-  color: var(--destructive-color);
-  background: none;
-  border: none;
-  cursor: pointer;
-}
+    --sidebar-primary-foreground: 0 0% 98%;
 
+    --sidebar-accent: 240 4.8% 95.9%;
 
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-}
+    --sidebar-accent-foreground: 240 5.9% 10%;
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .app-container {
-    padding: 1rem;
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-  .btn-container {
-  display: flex;
-  justify-content: start;
-  flex-wrap: wrap; 
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
 }
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
 }

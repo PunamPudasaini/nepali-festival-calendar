@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@hookform/resolvers':
-        specifier: ^3.10.0
-        version: 3.10.0(react-hook-form@7.54.2(react@18.3.1))
       '@radix-ui/react-dialog':
         specifier: ^1.1.5
         version: 1.1.5(@types/react-dom@18.3.5(@types/react@18.3.18))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -50,9 +47,6 @@ importers:
       date-fns:
         specifier: ^4.1.0
         version: 4.1.0
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
       lucide-react:
         specifier: ^0.474.0
         version: 0.474.0(react@18.3.1)
@@ -510,11 +504,6 @@ packages:
 
   '@floating-ui/utils@0.2.9':
     resolution: {integrity: sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg==}
-
-  '@hookform/resolvers@3.10.0':
-    resolution: {integrity: sha512-79Dv+3mDF7i+2ajj7SkypSKHhl1cbln1OGavqrsF7p6mbUv11xpqpacPsGDCTRvCSjEEIez2ef1NveSVL3b0Ag==}
-    peerDependencies:
-      react-hook-form: ^7.0.0
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -1766,9 +1755,6 @@ packages:
   lodash.upperfirst@4.3.1:
     resolution: {integrity: sha512-sReKOYJIJf74dhJONhU4e0/shzi1trVbSWDOhKYE5XV2O+H7Sb2Dihwuc7xWxVl+DgFPyTqIN3zMfT9cq5iWDg==}
 
-  lodash@4.17.21:
-    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
-
   loose-envify@1.4.0:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
     hasBin: true
@@ -2737,10 +2723,6 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
 
   '@floating-ui/utils@0.2.9': {}
-
-  '@hookform/resolvers@3.10.0(react-hook-form@7.54.2(react@18.3.1))':
-    dependencies:
-      react-hook-form: 7.54.2(react@18.3.1)
 
   '@humanfs/core@0.19.1': {}
 
@@ -3940,8 +3922,6 @@ snapshots:
   lodash.uniq@4.5.0: {}
 
   lodash.upperfirst@4.3.1: {}
-
-  lodash@4.17.21: {}
 
   loose-envify@1.4.0:
     dependencies:
